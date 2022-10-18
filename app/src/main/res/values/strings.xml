@@ -1,0 +1,14 @@
+<resources>
+    <string name="note_title_menu">Заметки</string>
+    <string name="info_menu">О приложении</string>
+    <string name="add_note_description_content">Добавить заметку</string>
+    <string name="context_menu_remove">Удалить</string>
+    <string name="app_version">Версия: 0.2.0</string>
+    <string name="app_developer">Разработчик: SanLex</string>
+    <string name="developer_email">Почту для связи я не дам</string>
+    <string name="hint_title">Заголовок</string>
+    <string name="hint_details">Описание заметки</string>
+    <string name="toolbar_edit_note_title">Измените заметку</string>
+    <string name="toolbar_add_note_title">Добавьте заметку</string>
+    <string name="edit_note_title">Изменить заметку</string>
+</resources>
