@@ -7,13 +7,15 @@
     android:padding="@dimen/default_margin">
 
     <TextView
+        android:id="@+id/textVersion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/grey"
         android:text="@string/app_version"
         android:textSize="@dimen/title_text"
         android:layout_marginVertical="@dimen/small_margin"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:clickable="true"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

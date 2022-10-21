@@ -1,6 +1,7 @@
 package com.example.notes.ui;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -37,7 +39,7 @@ public class NoteListFragment extends Fragment {
 
     private int removeIndex = -1;
 
-    public static NoteListFragment newInstance(){
+    public static NoteListFragment newInstance() {
         return new NoteListFragment();
     }
 
@@ -45,7 +47,7 @@ public class NoteListFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if(getActivity() instanceof RouterHolder){
+        if (getActivity() instanceof RouterHolder) {
             router = ((RouterHolder) getActivity()).getMainRouter();
         }
     }
@@ -72,7 +74,7 @@ public class NoteListFragment extends Fragment {
 
         int orientation = getResources().getConfiguration().orientation;
 
-        if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
 
             setLayoutManager(1);
         } else {
@@ -113,11 +115,11 @@ public class NoteListFragment extends Fragment {
 
     }
 
-    private void setLayoutManager(int column){
+    private void setLayoutManager(int column) {
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), column));
     }
 
-    private void getData(){
+    private void getData() {
         noteList = repository.getNotes();
 
         adapter = new NoteAdapter(this, noteList);
@@ -133,14 +135,33 @@ public class NoteListFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == R.id.item_remove){
-            removeNote(removeIndex);
+        if (item.getItemId() == R.id.item_remove) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext(), R.style.AlertDialogTheme);
+
+            builder.setTitle(R.string.title_delete_dialog)
+                    .setCancelable(false)
+                    .setMessage(R.string.question_message_dialog)
+                    .setPositiveButton(R.string.positive_button_content, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            removeNote(removeIndex);
+                        }
+                    }).setNegativeButton(R.string.negative_button_content, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .show();
+
             return true;
         }
 
         return super.onContextItemSelected(item);
     }
-    private void removeNote(int position){
+
+    private void removeNote(int position) {
 
         Note note = noteList.get(position);
 

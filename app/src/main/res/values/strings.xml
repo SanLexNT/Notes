@@ -11,4 +11,10 @@
     <string name="toolbar_edit_note_title">Измените заметку</string>
     <string name="toolbar_add_note_title">Добавьте заметку</string>
     <string name="edit_note_title">Изменить заметку</string>
+    <string name="title_alert">Пасхалка</string>
+    <string name="positive_button">OK</string>
+    <string name="title_delete_dialog">Вопрос</string>
+    <string name="question_message_dialog">Точно хотите удалить заметку?</string>
+    <string name="positive_button_content">Да</string>
+    <string name="negative_button_content">Нет</string>
 </resources>
